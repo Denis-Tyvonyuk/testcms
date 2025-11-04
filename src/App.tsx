@@ -1,17 +1,13 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Header from "./components/Navbar";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <p className="text-1xl">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className=" flex items-center justify-center max-w-[1240px]">
+      <Header />
+
+      <main></main>
+    </div>
   );
 }
 
