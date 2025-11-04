@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
+import WorkWith from "./components/WorkWith";
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
       {/* Full-width header */}
       <Header />
 
-      <main className="flex flex-row items-center justify-center flex-1 w-full px-6 py-10">
+      <div className="flex flex-row items-center justify-center flex-1 w-full px-6 py-10">
         <div className="flex justify-between gap-[150px]">
           <div className="flex flex-col gap-10 w-full max-w-[700px]">
             <div className="flex">
@@ -43,7 +44,7 @@ function App() {
               </div>
             </div>
             <div className="relative">
-              <div className="absolute gap-3 flex flex-col max-w-[400px] bg-white/90 backdrop-blur-md shadow-lg rounded-2xl p-4 border border-gray-100">
+              <div className="absolute gap-3 flex flex-col max-w-[400px] z-10 bg-white/90 backdrop-blur-md shadow-lg rounded-2xl p-4 border border-gray-100">
                 {/* Top row: avatar + stars + label */}
                 <div className="flex flex-row items-center gap-2.5 mb-2">
                   <img
@@ -99,7 +100,8 @@ function App() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
+      <WorkWith />
     </div>
   );
 }
