@@ -13,3 +13,7 @@ body {
   min-height: 100vh;
   font-family: Sofia Pro;
 }
+
+img {
+  max-width: max-content;
+}
