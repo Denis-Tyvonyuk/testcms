@@ -1,5 +1,7 @@
 import "./App.css";
+import Comments from "./components/Comments";
 import Header from "./components/Header";
+import WhatFansSay from "./components/WhatFansSay";
 import WorkWith from "./components/WorkWith";
 
 function App() {
@@ -102,6 +104,8 @@ function App() {
         </div>
       </div>
       <WorkWith />
+      <WhatFansSay />
+      <Comments />
     </div>
   );
 }
