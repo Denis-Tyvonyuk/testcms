@@ -7,11 +7,10 @@ import WorkWith from "./components/WorkWith";
 function App() {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      {/* Full-width header */}
       <Header />
 
       <div className="flex flex-row items-center justify-center flex-1 w-full px-6 py-10">
-        <div className="flex justify-between gap-[150px]">
+        <div className="flex md:justify-between md:gap-[150px] md:flex-row gap-[50px] flex-col-reverse">
           <div className="flex flex-col gap-10 w-full max-w-[700px]">
             <div className="flex">
               <div className="text-blue text-5xl leading-tight">
@@ -77,7 +76,11 @@ function App() {
             <div className="relative flex items-center justify-center">
               {/* Front image */}
               <div className="z-20">
-                <img src="/women1.jpg" width={300} alt="Woman 1" />
+                <img
+                  src="/women1.jpg"
+                  alt="Woman 1"
+                  className="w-[250px] sm:w-[300px]"
+                />
               </div>
 
               {/* Middle image (slightly behind and to the left) */}

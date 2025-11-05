@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Comments = () => {
   const comments = [
@@ -30,35 +30,52 @@ const Comments = () => {
   ];
 
   const [startIndex, setStartIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
   const total = comments.length;
+
+  // Detect screen size to adjust visible comments
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCount(1); // phones
+      } else {
+        setVisibleCount(3); // tablets/desktops
+      }
+    };
+    handleResize(); // run once at mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const next = () => setStartIndex((prev) => (prev + 1) % total);
   const prev = () => setStartIndex((prev) => (prev - 1 + total) % total);
 
-  const visible = [
-    comments[startIndex % total],
-    comments[(startIndex + 1) % total],
-    comments[(startIndex + 2) % total],
-  ];
+  const visible = Array.from({ length: visibleCount }).map(
+    (_, i) => comments[(startIndex + i) % total]
+  );
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="relative flex items-center justify-center py-10 max-w-[1200px]">
+    <div className="flex justify-center items-center px-4">
+      <div className="relative flex items-center justify-center py-10 w-full max-w-[1200px]">
         {/* Prev Button */}
         <button
           onClick={prev}
-          className="absolute left-[-40px] text-4xl  w-10 h-10 flex items-center justify-center  transition"
+          className="absolute left-0 sm:left-[50px] text-4xl font-light text-gray-400 hover:text-gray-700 w-10 h-10 flex items-center justify-center transition"
           aria-label="Previous"
         >
           {"<"}
         </button>
 
         {/* Comments Grid */}
-        <div className="flex flex-row gap-4">
+        <div
+          className={`flex gap-4 ${
+            visibleCount === 1 ? "flex-col items-center" : "flex-row"
+          }`}
+        >
           {visible.map((comment, i) => (
             <div
               key={i}
-              className="flex flex-col items-start gap-3 border border-[#EAEAEA] shadow-lg rounded-2xl p-4 max-w-[260px] bg-white transition-all duration-300"
+              className="flex flex-col items-start gap-3 border border-[#EAEAEA] shadow-lg rounded-2xl p-4 w-[260px] bg-white transition-all duration-300"
             >
               {/* Avatar + name + stars */}
               <div className="flex items-center gap-3">
@@ -86,7 +103,7 @@ const Comments = () => {
         {/* Next Button */}
         <button
           onClick={next}
-          className="absolute right-[-40px] text-4xl  w-10 h-10 flex items-center justify-center  transition"
+          className="absolute right-0 sm:right-[50px] text-4xl font-light text-gray-400 hover:text-gray-700 w-10 h-10 flex items-center justify-center transition"
           aria-label="Next"
         >
           {">"}
